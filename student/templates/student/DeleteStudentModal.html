@@ -1,0 +1,32 @@
+<div 
+    class="modal fade" 
+    id="deleteStudentModal{{ student.id }}" 
+    data-backdrop="static" 
+    data-keyboard="false" 
+    tabindex="-1" 
+    aria-labelledby="deleteGradeLabel" 
+    aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="deleteGradeLabel">
+          About to delete a Student
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'student:delete' student.pk %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-body">
+          <h5>Are you sure you want to delete {{ student.fullName }}?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Yes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

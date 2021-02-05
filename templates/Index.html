@@ -1,0 +1,16 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h2 class="display-4">Welcome to Students' Grade System!</h2>
+        <hr class="my-4">
+        <a 
+            class="btn btn-lg text-white" 
+            href="{% url 'student:list' %}" 
+            role="button" 
+            style="background-color: #0062cc;"
+        >
+            View Student's Grades
+        </a>
+    </div>
+{% endblock %}

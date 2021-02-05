@@ -1,0 +1,54 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<h3 class="mt-4 mb-5">Students Rank</h3>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  {% for testNumber in testsRank.keys %}
+    <li class="nav-item" role="presentation">
+      {% if forloop.counter == 1 %}
+        <a class="nav-link active" id="t{{ testNumber }}" data-toggle="tab" href="#p{{ testNumber }}" role="tab" aria-controls="p{{ testNumber }}" aria-selected="true">Test {{ testNumber }}</a>
+      {% else %}
+        <a class="nav-link" id="t{{ testNumber }}" data-toggle="tab" href="#p{{ testNumber }}" role="tab" aria-controls="p{{ testNumber }}" aria-selected="true">Test {{ testNumber }}</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+<div class="tab-content py-3" id="myTabContent">
+  {% for testNumber, grades in testsRank.items %}
+    {% if forloop.counter == 1 %}
+      <div class="tab-pane fade show active" id="p{{ testNumber }}" role="tabpanel" aria-labelledby="t{{ testNumber }}">
+    {% else %}
+      <div class="tab-pane fade" id="p{{ testNumber }}" role="tabpanel" aria-labelledby="t{{ testNumber }}">
+    {% endif %}
+      <table class="table table-bordered" style="width: 60%">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%">Rank</th>
+            <th scope="col" style="width: 5%">ID</th>
+            <th scope="col" style="width: 16%">Name</th>
+            <th scope="col" style="width: 10%">Chinese</th>
+            <th scope="col" style="width: 10%">English</th>
+            <th scope="col" style="width: 10%">Math</th>
+            <th scope="col" style="width: 10%">Total</th>
+            <th scope="col" style="width: 10%">Average</th>
+          </tr>
+        </thead>
+        {% for grade in grades %}
+            <tbody>
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ grade.student.id }}</td>
+                <td>{{ grade.student.fullName }}</td>
+                <td>{{ grade.chinese }}</td>
+                <td>{{ grade.english }}</td>
+                <td>{{ grade.math }}</td>
+                <td>{{ grade.total }}</td>
+                <td>{{ grade.average }}</td>
+              </tr>
+            </tbody>
+        {% endfor %}
+      </table>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

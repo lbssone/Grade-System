@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.nav-tabs .nav-link{
+  color: black;
+  border: none;
+}
+
+.nav-tabs .nav-link.active{
+  color: #0062cc;
+  border: none;
+  border-bottom: 2px solid #0062cc;
+}

@@ -1,0 +1,31 @@
+{% extends 'Base.html' %}
+{% block content %}
+<style>
+    .warning {
+        color: red;
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+
+    .inputWarning {
+        border: 1px solid red;
+    }
+</style>
+
+<h4 class="mt-4 mb-5">{{ title }}</h4>
+<form method="POST" id="commonForm">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group row col-2">
+          {{ field.label_tag }}
+          {{ field }}
+          {{ field.errors }}
+      </div>
+    {% endfor %}
+    <div class="mb-2" style="color: red">{{ errorMessage }}</div>
+    <input id="submitBtn" class="btn text-white" type="button" value="Submit" style="background-color: #0062cc;">
+</form>
+
+{% load static %}
+<script type="text/javascript" src="{% static 'js/FormValidation.js' %}"></script>
+{% endblock %}

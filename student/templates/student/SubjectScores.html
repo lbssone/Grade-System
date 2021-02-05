@@ -1,0 +1,70 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<h3 class="mt-4 mb-5">Subject Scores</h3>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+{% for testNumber in subjectsScores.keys %}
+  <li class="nav-item" role="presentation">
+    {% if forloop.counter == 1 %}
+      <a 
+        class="nav-link active" 
+        id="t{{ testNumber }}" 
+        data-toggle="tab" 
+        href="#r{{ testNumber }}" 
+        role="tab" 
+        aria-controls="r{{ testNumber }}" 
+        aria-selected="true"
+      >
+        Test {{ testNumber }}
+      </a>
+    {% else %}
+      <a 
+        class="nav-link" 
+        id="t{{ testNumber }}" 
+        data-toggle="tab" 
+        href="#r{{ testNumber }}" 
+        role="tab" 
+        aria-controls="r{{ testNumber }}" 
+        aria-selected="true"
+      >
+        Test {{ testNumber }}
+      </a>
+    {% endif %}
+  </li>
+{% endfor %}
+</ul>
+<div class="tab-content py-3" id="myTabContent">
+  {% for testNumber, scores in subjectsScores.items %}
+    {% if forloop.counter == 1 %}
+      <div class="tab-pane fade show active" id="r{{ testNumber }}" role="tabpanel" aria-labelledby="t{{ testNumber }}">
+    {% else %}
+      <div class="tab-pane fade" id="r{{ testNumber }}" role="tabpanel" aria-labelledby="t{{ testNumber }}">
+    {% endif %}
+        <table class="table table-bordered" style="width: 60%">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Chinese</th>
+              <th scope="col">English</th>
+              <th scope="col">Math</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th style="width: 20%">Total</td>
+              <td>{{ scores.total.chinese }}</td>
+              <td>{{ scores.total.english }}</td>
+              <td>{{ scores.total.math }}</td>
+            </tr>
+            <tr>
+              <th style="width: 20%">Average</td>
+              <td>{{ scores.avg.chinese }}</td>
+              <td>{{ scores.avg.english }}</td>
+              <td>{{ scores.avg.math }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  {% endfor %}
+</div>
+{% endblock %}
